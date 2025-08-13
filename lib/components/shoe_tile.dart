@@ -3,7 +3,8 @@ import 'package:flutter/material.dart';
 
 class ShoeTile extends StatelessWidget {
   Shoe shoe;
-  ShoeTile({super.key, required this.shoe});
+  void Function()? onTap;
+  ShoeTile({super.key, required this.shoe, required this.onTap});
 
   @override
   Widget build(BuildContext context) {
@@ -21,8 +22,8 @@ class ShoeTile extends StatelessWidget {
           ClipRRect(
             borderRadius: BorderRadius.circular(12.0),
             child: SizedBox(
-              width: 120,
-              height: 120,
+              width: 200,
+              height: 230,
               child: Image.asset(shoe.imagePath, fit: BoxFit.cover)
               
               ),
@@ -30,7 +31,10 @@ class ShoeTile extends StatelessWidget {
           ),
 
           // shoe description
-          Text(shoe.description, style: TextStyle(color: Colors.grey[800])),
+          Padding(
+            padding: const EdgeInsets.symmetric(horizontal: 15.0),
+            child: Text(shoe.description, style: TextStyle(color: Colors.grey[800])),
+          ),
 
           // details
           Padding(
@@ -50,11 +54,14 @@ class ShoeTile extends StatelessWidget {
                   ],
                 ),
                 // add button
-                Container(
-                  padding: const EdgeInsets.all(20.0),
-                  decoration: const BoxDecoration(color: Colors.black, borderRadius: BorderRadius.only(topLeft: Radius.circular(12.0), bottomRight: Radius.circular(12.0))),
-                  child: const Icon(Icons.add_shopping_cart, color: Colors.white,)
-                  ),
+                GestureDetector(
+                  onTap: onTap,
+                  child: Container(
+                    padding: const EdgeInsets.all(20.0),
+                    decoration: const BoxDecoration(color: Colors.black, borderRadius: BorderRadius.only(topLeft: Radius.circular(12.0), bottomRight: Radius.circular(12.0))),
+                    child: const Icon(Icons.add_shopping_cart, color: Colors.white,)
+                    ),
+                ),
               ],
             ),
           ),
