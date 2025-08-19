@@ -51,7 +51,7 @@ class Cart extends ChangeNotifier{
   }
 
   // removing items
-  void addItemShop(Shoe shoe) {
+  void removeItemCart(Shoe shoe) {
     shoeCart.remove(shoe);
     notifyListeners();
   }
